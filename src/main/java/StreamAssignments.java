@@ -34,11 +34,30 @@ public class StreamAssignments {
 //        divisible.stream()
 //                .forEach(num -> System.out.println(num));
 
+//        //Printing User Inputs assignment
+//        printingUserInputs();
+
 
 
 
 
     }
+
+    private static void printingUserInputs() {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<String> list = new ArrayList<>();
+        System.out.println("Input new strings, will print out your strings when you enter nothing");
+        while(true) {
+            String reply = scanner.nextLine();
+            if (reply.equals("")) {
+                break;
+            } else {
+                list.add(reply);
+            }
+        }
+        list.forEach(System.out::println);
+    }
+
     public static ArrayList<Integer> divisible(ArrayList<Integer> numbers){
         ArrayList<Integer> values = numbers.stream()
                 .filter(value -> value%3==0 || value%2==0 || value%5==0)

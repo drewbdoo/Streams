@@ -19,12 +19,33 @@ public class StreamAssignments {
 //        list.add(4);
 //        list.add(2);
 //        list.add(6);
-//        positive(list);
+//        System.out.println(list);
+//        System.out.println(positive(list));
+
+//        //Divisible assignment
+//        ArrayList<Integer> numbers = new ArrayList<>();
+//        numbers.add(3);
+//        numbers.add(2);
+//        numbers.add(-17);
+//        numbers.add(-5);
+//        numbers.add(7);
+//
+//        ArrayList<Integer> divisible = divisible(numbers);
+//        divisible.stream()
+//                .forEach(num -> System.out.println(num));
+
+
 
 
 
     }
+    public static ArrayList<Integer> divisible(ArrayList<Integer> numbers){
+        ArrayList<Integer> values = numbers.stream()
+                .filter(value -> value%3==0 || value%2==0 || value%5==0)
+                .collect(Collectors.toCollection(ArrayList::new));
+        return values;
 
+    }
 
     public static List<Integer> positive(List<Integer> numbers){
 //        ArrayList<Integer> values = numbers.stream()

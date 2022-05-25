@@ -1,3 +1,6 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -5,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class StreamAssignments {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 //        //Average of Numbers assignment
 //        averageOfNumbers();
 
@@ -40,10 +43,61 @@ public class StreamAssignments {
 //        //Limited numbers assignment
 //        limitedNumbers();
 
+//        //Unique Last Names assignment
+//        uniqueLastNames();
+
+        //Weighting assignments - commented out original code, replaced with new
+
+//        //Reading Files Per Line assignment
+//        List presidents = read("presidents.txt");
+//        presidents.forEach(System.out::println);
+
+//        //Books from file
+//        readBooks("Books.txt");
 
 
+    }
 
+    public static List<Book> readBooks(String file) throws IOException {
+        return Files.lines(Paths.get(file))
+                .map(s->s.split(","))
+                .map(s-> new Book(s[0], Integer.parseInt(s[1]), Integer.parseInt(s[2]), s[3]))
+                .collect(Collectors.toList());
+    }
+    public static List<String> read(String file){
+        List<String> presidents = new ArrayList<>();
+        try{
+            Files.readAllLines(Paths.get(file))
+                    .forEach(presidents::add);
+        }catch (Exception e){
+            System.out.println("Error: " +e.getMessage());
+        }
+        return presidents;
 
+    }
+
+    private static void uniqueLastNames() {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<String> lastNames = new ArrayList<>();
+        while(true){
+            System.out.println("Continue personal information input? \"quit\" ends");
+            String reply = scanner.nextLine();
+            if(reply.equalsIgnoreCase("quit")){
+                System.out.println("Unique last names in alphabetical order:");
+                break;
+            }else{
+                System.out.println("Input first name:");
+                scanner.nextLine();
+                System.out.println("Input last name: ");
+                String last = scanner.nextLine();
+                System.out.println("Input year of birth:");
+                scanner.nextLine();
+                lastNames.add(last);
+            }
+        }
+        lastNames.stream()
+                .distinct()
+                .sorted().forEach(System.out::println);
     }
 
     private static void limitedNumbers() {
